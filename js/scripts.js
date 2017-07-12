@@ -11,9 +11,11 @@ function phraseHandler(userInput){
 
 function toPigLatin(userInput){
   var result;
-  if(userInput.length === 0){
+  if(!/.+/.test(userInput)){
     alert("Please enter input");
-  }else if(userInput.length === 1){
+    result = "Try again";
+  }else if(/^.{1}$/.test(userInput)){
+    alert("single");
     result = singleChar(userInput);
     return result;
   } else{
@@ -28,6 +30,9 @@ function multiChar(userInput){
   var nums = /[1234567890]+/;
   var vowels = /[aeiou]/;
   var vowelsy = /[aeiouy]/;
+  var qtest = /.*q/;
+  var utest = /u.*/;
+
   if(nums.test(userInput)){
     return userInput;
   }else if(vowels.test(userInput[0])){
@@ -39,7 +44,7 @@ function multiChar(userInput){
       shifted += userInput.slice(0,1);
       userInput = userInput.slice(1, userInput.length);
     }
-    if(shifted.endsWith('q') && userInput[0] === "u"){
+    if(qtest.test(shifted) && utest.test(userInput)){
       shifted += userInput.slice(0,1);
       userInput = userInput.slice(1, userInput.length);
     }
