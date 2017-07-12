@@ -21,9 +21,19 @@ function multiChar(userInput){
   if(!isNaN(userInput)){
     return userInput;
   }else if(userInput[0] === "a" || userInput[0] === "e" || userInput[0] === "i" || userInput[0] === "o" || userInput[0] === "u"){
-      result = userInput + "way";
+    result = userInput + "way";
   }else{
-    alert("not starting with vowel");
+    var shifted = userInput.slice(0,1);
+    userInput = userInput.slice(1, userInput.length);
+    while(userInput[0] !== "a" && userInput[0] !== "e" && userInput[0] !== "i" && userInput[0] !== "o" && userInput[0] !== "u" && userInput[0] !== "y"){
+      shifted += userInput.slice(0,1);
+      userInput = userInput.slice(1, userInput.length);
+    }
+    if(shifted.endsWith('q') && userInput[0] === "u"){
+      shifted += userInput.slice(0,1);
+      userInput = userInput.slice(1, userInput.length);
+    }
+    result = userInput + shifted + "ay";
   }
   return result;
 }
