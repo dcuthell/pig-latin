@@ -25,14 +25,17 @@ function toPigLatin(userInput){
 
 function multiChar(userInput){
   var result;
-  if(!isNaN(userInput)){
+  var nums = /[1234567890]+/;
+  var vowels = /[aeiou]/;
+  var vowelsy = /[aeiouy]/;
+  if(nums.test(userInput)){
     return userInput;
-  }else if(userInput[0] === "a" || userInput[0] === "e" || userInput[0] === "i" || userInput[0] === "o" || userInput[0] === "u"){
+  }else if(vowels.test(userInput[0])){
     result = userInput + "way";
   }else{
     var shifted = userInput.slice(0,1);
     userInput = userInput.slice(1, userInput.length);
-    while(userInput[0] !== "a" && userInput[0] !== "e" && userInput[0] !== "i" && userInput[0] !== "o" && userInput[0] !== "u" && userInput[0] !== "y"){
+    while(!vowelsy.test(userInput[0])){
       shifted += userInput.slice(0,1);
       userInput = userInput.slice(1, userInput.length);
     }
@@ -47,11 +50,13 @@ function multiChar(userInput){
 
 function singleChar(userInput){
   var result;
-  if(!isNaN(userInput)){
+  var nums = /[1234567890]/;
+  var vowels = /[aeiou]/;
+  if(nums.test(userInput)){
     return userInput;
-  }else if(userInput === "a" || userInput === "e" || userInput === "i" || userInput === "o" || userInput === "u"){
+  }else if(vowels.test(userInput)){
     result = userInput + "way";
-  }else if(userInput !== "a" || userInput !== "e" || userInput !== "i" || userInput !== "o" || userInput !== "u"){
+  }else if(!vowels.test(userInput)){
     result = userInput + "ay";
   }else{
     alert("fail");
