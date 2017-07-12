@@ -1,6 +1,13 @@
 //Backend
 
-
+function phraseHandler(userInput){
+  var phraseArray = userInput.split(" ");
+  var outPhrase = "";
+  for(i = 0; i < phraseArray.length; i++){
+    outPhrase += toPigLatin(phraseArray[i]) + " ";
+  }
+  return outPhrase;
+}
 
 function toPigLatin(userInput){
   var result;
@@ -56,7 +63,7 @@ function singleChar(userInput){
 $(document).ready(function(){
   $("#translator").submit(function(event){
     var input = $("input#words").val();
-    var output = toPigLatin(input);
+    var output = phraseHandler(input);
     $("#translation").text(output);
     $("#result").show();
     event.preventDefault();
